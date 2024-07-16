@@ -67,6 +67,7 @@ def save_model(model, accuracy):
     else:
         print('Model accuracy is below the threshold. Model not registered.')
 
+
 def main():
     X, y = load_and_preprocess_data()
     model, X_val, y_val = train_model(X, y)

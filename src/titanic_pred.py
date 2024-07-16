@@ -51,7 +51,7 @@ def make_predictions(model, test_df):
 
 def create_submission(test_df, predictions):
     submission = pd.DataFrame({'PassengerId': test_df['PassengerId'], 'Survived': predictions})
-    submission.to_csv('../Results/submission.csv', index=False)
+    submission.to_csv('../Results/submission_pred.csv', index=False)
 
 def main():
     test_df = load_and_preprocess_test_data()
