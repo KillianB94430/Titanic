@@ -1,3 +1,5 @@
 mlruns/
 **/.DS_Store
 **/.DS_Store
+#gitclone poetry install et poetry run  
+#exp tracking 

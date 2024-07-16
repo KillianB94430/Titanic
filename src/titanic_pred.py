@@ -1,7 +1,9 @@
-def load_and_preprocess_test_data():
-    import pandas as pd
-    import warnings
+import pandas as pd
+import warnings
+import mlflow
+from mlflow.tracking import MlflowClient
 
+def load_and_preprocess_test_data():
     test_df = pd.read_csv('../Data/test.csv')
     warnings.filterwarnings('ignore')
 
@@ -18,18 +20,36 @@ def load_and_preprocess_test_data():
     return test_df
 
 def load_model():
-    import mlflow
+    client = MlflowClient()
     model_name = "TitanicModel2"
-    model = mlflow.pyfunc.load_model(model_uri=f"models:/{model_name}/production")
-    return model
+    filter_string = f"name='{model_name}'"
+    results = client.search_registered_models(filter_string=filter_string)
+    
+    if not results:
+        raise ValueError(f"No registered models found with name '{model_name}'")
+    
+    print(results)
+    print("-" * 80)
+    for res in results:
+        for mv in res.latest_versions:
+            print(f"name={mv.name}; run_id={mv.run_id}; version={mv.version}")
+    
+    registered_versions = client.search_registered_models(filter_string=filter_string,
+        order_by=["last_updated_timestamp DESC"])
+    
+    print(registered_versions)
+    last_model_uri = registered_versions[0].latest_versions[-1].source    
+    print(f"last_model_uri : {last_model_uri}")    
+    
+    # Load the appropriate model identified above    
+    loaded_model = mlflow.sklearn.load_model(last_model_uri)
+    return loaded_model
 
 def make_predictions(model, test_df):
     predictions = model.predict(test_df)
     return predictions
 
 def create_submission(test_df, predictions):
-    import pandas as pd
-
     submission = pd.DataFrame({'PassengerId': test_df['PassengerId'], 'Survived': predictions})
     submission.to_csv('../Results/submission.csv', index=False)
 
@@ -41,3 +61,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

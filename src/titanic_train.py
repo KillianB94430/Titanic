@@ -1,6 +1,11 @@
+import pandas as pd
+import warnings
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+import mlflow
+from mlflow import MlflowClient
+
 def load_and_preprocess_data():
-    import pandas as pd
-    import warnings
 
     train_df = pd.read_csv('../Data/train.csv')
     warnings.filterwarnings('ignore')
@@ -20,8 +25,7 @@ def load_and_preprocess_data():
     return X, y
 
 def train_model(X, y):
-    from sklearn.model_selection import train_test_split
-    from sklearn.ensemble import RandomForestClassifier
+
 
     X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
     model = RandomForestClassifier(n_estimators=100, random_state=42)
@@ -37,8 +41,6 @@ def evaluate_model(model, X_val, y_val):
     return accuracy
 
 def save_model(model, accuracy):
-    import mlflow
-    from mlflow import MlflowClient
 
     mlflow.log_param('n_estimators', 100)
     mlflow.log_param('random_state', 42)
@@ -48,7 +50,7 @@ def save_model(model, accuracy):
     if accuracy > 0.84:
         model_uri = f'runs:/{mlflow.active_run().info.run_id}/model'
         print(f'Model URI: {model_uri}')
-        model_name = "TitanicModel2"
+        model_name = 'TitanicModel2'
 
         client = MlflowClient()
         try:
