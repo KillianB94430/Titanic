@@ -1,5 +1,5 @@
-Ce projet a pour but de s'entraîner sur les principes basique du Machine Learning et se familiariser avec MlFlow.
-Il se divise en deux types, le modèle d'entrainement et le modèle de prédiction.
+Ce projet a pour but de s'entraîner sur les principes basiques du Machine Learning et de se familiariser avec MlFlow. 
+Il se divise en deux parties : le modèle d'entraînement et le modèle de prédiction.
 
 Structure
 
