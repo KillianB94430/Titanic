@@ -3,10 +3,10 @@ import titanic_train
 
 def main():
     print("Running Titanic Training ")
-    titanic_train.main()
+    titanic_train.run_pipeline_train()
     
     print("Running Titanic Prediction ")
-    titanic_pred.main()
+    titanic_pred.run_pipeline_pred()
 
 if __name__ == '__main__':
     main()
