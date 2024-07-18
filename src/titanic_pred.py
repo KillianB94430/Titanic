@@ -116,6 +116,12 @@ def create_submission(test_df, predictions):
     submission = pd.DataFrame({'PassengerId': test_df['PassengerId'], 'Survived': predictions})
     submission.to_csv('../Results/submission_pred.csv', index=False)
 
+
+
+
+
+
+
 def run_pipeline_pred():
     """
     Run the full prediction pipeline: load data, preprocess, load model,

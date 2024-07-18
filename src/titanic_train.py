@@ -158,6 +158,12 @@ def save_model_with_check(model,accuracy,treshold=0.84):
         print('Model accuracy is below the threshold. Model not registered.')
 
 
+
+
+
+
+
+
 def run_pipeline_train():
     """
     Run the full training pipeline: load data, preprocess, train, evaluate, and save the model.

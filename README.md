@@ -1,9 +1,67 @@
-Ce projet a pour but de s'entraîner sur les principes basiques du Machine Learning et de se familiariser avec MlFlow. 
-Il se divise en deux parties : le modèle d'entraînement et le modèle de prédiction.
+D'accord, voici un modèle de README en français basé sur votre projet Titanic :
 
-Structure
+---
 
-Data : Contient les ensembles de données utilisés pour l'entraînement et les tests.                                                                                                  
-Notebook : Notebooks Jupyter avec l'analyse exploratoire des données et l'entraînement du modèle.                                                                                     Results : Fichiers de sortie incluant les résultats des prédictions.                                                                                                                      src : Code source pour le prétraitement des données, l'entraînement du modèle, l'évaluation et la génération de soumissions.
+# Projet Titanic
 
-Installation                                                                                                                                                                           Clonez le dépôt.                                                                                                                                                                    Installez les dépendances avec poetry install.                                                                                                                                       Exécutez le script principal pour l'entraînement et les prédictions.
+Ce projet utilise un modèle de machine learning pour prédire la survie des passagers du Titanic. Les étapes incluent le chargement des données, la prétraitement, l'entraînement du modèle, et l'évaluation.
+
+## Prérequis
+
+Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
+
+- Python 3.12
+- pip (Python package installer)
+- Poetry (gestionnaire de dépendances pour Python)
+
+## Installation
+
+1. Clonez le dépôt sur votre machine locale :
+
+```bash
+git clone https://github.com/KillianB94430/Titanic.git
+cd Titanic
+```
+
+2. Installez les dépendances avec Poetry :
+
+```bash
+poetry install
+```
+
+## Structure du Projet
+
+```
+.
+├── Data
+│   └── train.csv          # Jeu de données d'entraînement
+├── Results
+│   └── submission.csv     # Fichier de soumission
+├── src
+│   ├── titanic_train.py   # Script d'entraînement du modèle
+│   └── titanic_pred.py    # Script de prédiction
+└── README.md              # Documentation du projet
+```
+
+## Utilisation
+
+### Entraînement du Modèle
+
+Pour entraîner le modèle, exécutez le script `titanic_train.py` :
+
+```bash
+poetry run python src/titanic_train.py
+```
+
+### Faire des Prédictions
+
+Pour faire des prédictions sur un jeu de données de test, exécutez le script `titanic_pred.py` :
+
+```bash
+poetry run python src/titanic_pred.py
+```
+
+### Pour lancer les deux script en même temps
+```bash
+poetry run python src/main.py
+```
