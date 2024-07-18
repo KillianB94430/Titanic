@@ -1,6 +1,3 @@
-D'accord, voici un modèle de README en français basé sur votre projet Titanic :
-
----
 
 # Projet Titanic
 
