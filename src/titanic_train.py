@@ -6,7 +6,7 @@ from sklearn.ensemble import RandomForestClassifier
 import mlflow
 from mlflow import MlflowClient
 
-def load_data():
+def load_data(): #remettre l'arg
     """
     Load the dataset from a CSV file.
 
@@ -14,11 +14,11 @@ def load_data():
         filepath (str): The path to the CSV file containing the dataset.
 
     Returns:
-        pd.DataFrame: The loaded dataset as a Pandas DataFrame.
+        pd.DataFrame: The loaded dataset as a Pandas DataFrame. 
     """
     return pd.read_csv("../Data/train.csv")
 
-def preprocess_data(train_df):
+def preprocess_data(train_df:pd.DataFrame)->pd.DataFrame:
     """
     Preprocess the dataset by handling missing values, creating new features,
     and dropping unnecessary columns.
@@ -29,7 +29,7 @@ def preprocess_data(train_df):
     Returns:
         pd.DataFrame: The preprocessed dataset.
     """
-    warnings.filterwarnings("ignore")  # Ignore warnings
+    warnings.filterwarnings("ignore") # Ignore warnings
     # Fill missing values
     train_df["Age"].fillna(train_df["Age"].median(), inplace=True)
     train_df["Embarked"].fillna(train_df["Embarked"].mode()[0], inplace=True)
@@ -84,8 +84,8 @@ def train_model(X, y):
     """
     X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
     model = RandomForestClassifier(n_estimators=100, random_state=42)
-    model.fit(X_train, y_train)
-    return model, X_val, y_val
+    model.fit(X_train, y_train) #trouver l'étape logique 
+    return model, X_val, y_val 
 
 def evaluate_model(model, X_val, y_val):
     """
@@ -104,7 +104,7 @@ def evaluate_model(model, X_val, y_val):
     print(f'Validation Accuracy: {accuracy}')
     return accuracy
     
-def set_mlflow_experiment():
+def set_mlflow_experiment(): #model name à mettre en variable
     """
     Set up and run the MLflow experiment.
     """
@@ -112,13 +112,14 @@ def set_mlflow_experiment():
     with mlflow.start_run():
         set_mlflow_experiment("Titanic")
 
-def save_model(model, accuracy,n_estimators=100,random_state=42):
+def save_model(model, accuracy,n_estimators=100,random_state=42): #save l'experience 
     """
     log parameters and metrics to MLflow.
 
     Args:
         n_estimators (int): Number of estimators for the model.
         random_state (int): Random state for reproducibility.
+        model
 
     Returns:
     """
@@ -189,3 +190,4 @@ def run_pipeline_train():
 
 if __name__ == '__main__':
     run_pipeline_train()
+

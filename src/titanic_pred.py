@@ -129,7 +129,7 @@ def run_pipeline_pred():
     """
     # Load and preprocess the test data
     test_df = load_data()
-    test_df = preprocess_data(test_df)
+    test_df = preprocess_data(test_df) #entree et sortie pas le meme non (test_df_transfo)
     
     
     # Load the trained model
